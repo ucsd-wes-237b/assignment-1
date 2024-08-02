@@ -1,7 +1,7 @@
 CC       = gcc
 CFLAGS   = -g -Wall
 INCFLAGS := -I../../helper_lib
-LDFLAGS  := ../../helper_lib/helper_lib.a
+LDFLAGS  := ../../helper_lib/helper_lib.a -lm
 
 ifeq ($(shell uname -o), Darwin)
 	LDFLAGS += -framework OpenCL

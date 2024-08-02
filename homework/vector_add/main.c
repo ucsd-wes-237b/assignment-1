@@ -16,21 +16,22 @@
 
 int main(int argc, char *argv[])
 {
-    if (argc != 4)
+    if (argc != 5)
     {
-        fprintf(stderr, "Usage: %s <input_file_0> <input_file_1> <output_file>\n", argv[0]);
+        fprintf(stderr, "Usage: %s <input_file_0> <input_file_1> <answer_file> <output_file>\n", argv[0]);
         return -1;
     }
 
     const char *input_file_a = argv[1];
     const char *input_file_b = argv[2];
-    const char *output_file_c = argv[3];//~renamed from input_file_c
+    const char *input_file_c = argv[3];
+    const char *input_file_d = argv[4];
 
     // Load external OpenCL kernel code
     char *kernel_source = OclLoadKernel(KERNEL_PATH); // Load kernel source
 
     // Host input and output vectors and sizes
-    Matrix host_a, host_b, host_c;
+    Matrix host_a, host_b, host_c, answer;
 
     // Device input and output buffers
     cl_mem device_a, device_b, device_c;
@@ -38,7 +39,6 @@ int main(int argc, char *argv[])
     size_t global_item_size, local_item_size;
     cl_int err;
 
-    cl_platform_id cpPlatform; // OpenCL platform
     cl_device_id device_id;    // device ID
     cl_context context;        // context
     cl_command_queue queue;    // command queue
@@ -50,11 +50,14 @@ int main(int argc, char *argv[])
 
     err = LoadMatrix(input_file_b, &host_b);
     CHECK_ERR(err, "LoadMatrix");printf("...LoadMatrix input_file_b\n");
+  
+    err = LoadMatrix(input_file_c, &answer);
+    CHECK_ERR(err, "LoadMatrix");
 
-    err = LoadMatrix(output_file_c, &host_c); //~renamed from input_file_c
-    CHECK_ERR(err, "LoadMatrix");printf("...LoadMatrix output_file_c\n");//~renamed from input_file_c
-
-    printf("Vector Shape: [%u, %u]\n", (unsigned int)host_a.shape[0], (unsigned int)host_a.shape[1]);
+    // Allocate the memory for the target.
+    host_c.shape[0] = host_a.shape[0];
+    host_c.shape[1] = host_a.shape[1];
+    host_c.data = (float *)malloc(sizeof(float) * host_c.shape[0] * host_c.shape[1]);
 
     // Find platforms and devices
     OclPlatformProp *platforms = NULL;
@@ -127,14 +130,12 @@ int main(int argc, char *argv[])
         printf("C[%u]: %f == %f\n", i, host_c.data[i], host_a.data[i] + host_b.data[i]);
     }
     printf("...Prints the results...Done\n");
-    // Save the result
-    
-    err = SaveMatrix(output_file_c, &host_c);//~renamed "./output.raw" and host_c.data changed to host_c
-    if(err < 0) {
-        perror("...SaveMatrix error");
-        exit(1);
-    }
 
+    CheckMatrix(&answer, &host_c);
+    // Save the result
+    err = SaveMatrix(input_file_d, &host_c);
+    CHECK_ERR(err, "SaveMatrix");
+  
     //@@ Free the GPU memory here
         cl_int ret;
         clFlush(queue);
@@ -150,6 +151,6 @@ int main(int argc, char *argv[])
         free(host_c.data);
         free(kernel_source);
         free(platforms);
-
+  
     return 0;
 }

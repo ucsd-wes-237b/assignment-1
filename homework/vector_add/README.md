@@ -1,4 +1,4 @@
-# Programming Assignment 2: Vector Addition
+# Programming Assignment 1: Vector Addition
 
 ## Objective
 
@@ -29,9 +29,6 @@ Use the `make run` command to test your program. There are a total of 10 tests o
 ## Dataset Generation (optional)
 
 The dataset required to test the program is already generated. If you are interested in how the dataset is generated please refer to the `dataset_generator.py` file in the `Dataset` directory. You may run this script using `python dataset_generator.py`.
-
-## Profiling
-Compile the `opencl-intercept-layer`.  Use this to calculate device timings with the `-d` parameter for your `vector_add`.
 
 ## Different Data Types
 Adapt your code to test both 32-bit integers and doubles.  Rerun profiling.  What changed?
