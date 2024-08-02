@@ -9,7 +9,7 @@ def generate_input_files(folder_path, folder_index):
             N = folder_index ** 7 + 1
             input_values.append([])
             input_values[i].append(N)
-            file.write(f"{N}\n")
+            file.write(f"# ({N}, 1)\n")
             for _ in range(N):
                 value = round(random.uniform(0, 100), 2)
                 input_values[i].append(value)
