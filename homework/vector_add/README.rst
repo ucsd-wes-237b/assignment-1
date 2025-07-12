@@ -1,4 +1,4 @@
-PA2 - Vector Addition
+Vector Addition
 =====================
 
 Objective
@@ -31,7 +31,3 @@ Use the :code:`make run` command to test your program. There are a total of 10 t
 Dataset Generation (Optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The dataset required to test the program is already generated. If you are interested in how the dataset is generated please refer to the :code:`dataset_generator.py` file in the :code:`Dataset` directory. You may run this script using :code:`python dataset_generator.py`.
-
-Submission
-^^^^^^^^^^
-Submit the :code:`main.c` and :code:`vector_add_2.cl`, and :code:`vector_add_4.cl` files on gradescope. Preserve the file name while uploading to gradescope.
