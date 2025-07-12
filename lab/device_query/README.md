@@ -1,4 +1,4 @@
-# Programming Assignment 1: Device Query
+# Device Query
 
 ## Objective
 
