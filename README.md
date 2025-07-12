@@ -1,10 +1,16 @@
 # Assignment 1 - Due 2025-07-27
+## Repository Setup
+When cloning this repo, please make sure you clone it with the following command
+```
+git clone --recursive $REPO_PATH
+```
+Where `$REPO_PATH` is the path clone path for your repo.
+
 ## Setup of your Qualcomm RB3 Gen 2
 TODO
 
 ## Lab
-### Device Query & Raytracer
-The first portion of this lab will be focused on validating the setup of your RB3.  You will first run the device query, then you will run the ray tracer on CPU and finally on GPU.
+Your lab today will be focused on first setting up your Qualcomm RB3 and ensuring that it is functional.  See the [Lab Readme](lab/README.rst)
 
 ## Homework
 This assignment will be your introduction to OpenCL.  We will be doing
