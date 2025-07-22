@@ -15,7 +15,7 @@ Your lab today will be focused on first setting up your Qualcomm RB3 and ensurin
 ## Homework
 
 ### Huffman Encoding Tree
-As a refresher for C/C++, we will be implementing a Huffman Encoding Tree.  In your report, talk about your describe your encoding scheme and provide sample output.
+As a refresher for C/C++, we will be implementing a Huffman Encoding Tree.  In your report, talk about and describe your encoding scheme and provide sample output.
 
 ### Vector Add
 See [Readme](homework/vector_add/README.rst).
